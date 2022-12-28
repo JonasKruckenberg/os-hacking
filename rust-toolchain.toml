@@ -1,0 +1,11 @@
+[toolchain]
+channel = "nightly-2022-11-16"
+targets = ["aarch64-unknown-uefi"]
+components = [
+    "clippy",
+    "rustfmt",
+    # "rust-src",
+    # "llvm-tools-preview",
+    # "miri"
+]
+profile = "minimal"

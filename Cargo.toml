@@ -1,0 +1,28 @@
+[package]
+name = "kernel-workspace"
+authors = ["Jonas Kruckenberg <iterpre@protonmail.com>"]
+version.workspace = true
+edition.workspace = true
+
+[workspace.package]
+edition = "2021"
+version = "0.1.0"
+
+[workspace]
+resolver = "2"
+members = [
+    "crates/boot-image", # build disk images from the uefi bootloader + kernel
+    "crates/bootloader", # uefi bootloader
+    "crates/bootloader-api", # api for the kernel to interact with the bootloader
+    "crates/kernel" # the kernel
+]
+
+[workspace.dependencies]
+bootloader-api = { path = "crates/bootloader-api" }
+
+[build-dependencies]
+boot-image = { path = "./crates/boot-image" }
+
+[features]
+aarch64 = ["boot-image/aarch64"]
+x86_64 = ["boot-image/x86_64"]
